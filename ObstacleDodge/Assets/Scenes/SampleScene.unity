@@ -547,6 +547,14 @@ PrefabInstance:
       propertyPath: zMoveRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 736312373622932430, guid: e841232e9fc87d04c87fed3215b20bec, type: 3}
+      propertyPath: vertMoveRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736312373622932430, guid: e841232e9fc87d04c87fed3215b20bec, type: 3}
+      propertyPath: horizMoveRate
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3599485689604906414, guid: e841232e9fc87d04c87fed3215b20bec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
