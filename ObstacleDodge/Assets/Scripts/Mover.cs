@@ -2,20 +2,14 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    
-    float zResult = 0f;
-    float deltaTime = 0f;
-    bool bMoveForward = true;
     [SerializeField] float horizMoveRate = 1.0f;
     [SerializeField] float vertMoveRate = 1.0f;
-    Vector3 currentPos = Vector3.zero;
-    Vector3 newPos = Vector3.zero;
     float deltaX = 0f;
     float deltaZ = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentPos = transform.position;
+
     }
     
     // Update is called once per frame
@@ -23,14 +17,14 @@ public class Mover : MonoBehaviour
     {
         deltaX = Input.GetAxis("Horizontal");
         deltaZ = Input.GetAxis("Vertical");
-
-        currentPos = transform.position;
-        newPos.x = deltaX * horizMoveRate * Time.deltaTime;//transform.position.x + deltaX;
-        newPos.z = deltaZ * vertMoveRate * Time.deltaTime;//transform.position.y + deltaZ;
-        transform.Translate(newPos);
+        transform.Translate(transform.right * deltaX * horizMoveRate * Time.deltaTime);
+        transform.Translate(transform.forward * deltaZ * vertMoveRate * Time.deltaTime);
         //transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
     }
 
+    float zResult = 0f;
+    float deltaTime = 0f;
+    bool bMoveForward = true;
     // Use delta time to lerp the mover between z positions. TODO: make forward vector.
     void PingPong(float deltaTime)
     {
