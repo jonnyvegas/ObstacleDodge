@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Mover : MonoBehaviour
@@ -9,17 +10,30 @@ public class Mover : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        LogTest("Welcome to the game.");
+        LogTest("Avoid objects and get to the goal.");
+        LogTest("The walls are invisible.");
+        LogTest("Good luck!");
     }
     
     // Update is called once per frame
     void Update()
     {
+        MovePlayer();
+        //transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
+    }
+
+    void MovePlayer()
+    {
         deltaX = Input.GetAxis("Horizontal");
         deltaZ = Input.GetAxis("Vertical");
         transform.Translate(transform.right * (deltaX * horizMoveRate * Time.deltaTime));
         transform.Translate(transform.forward * (deltaZ * vertMoveRate * Time.deltaTime));
-        //transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
+    }
+
+    void LogTest(String SomeMessage)
+    {
+        Debug.Log(SomeMessage);
     }
 
     float zResult = 0f;
