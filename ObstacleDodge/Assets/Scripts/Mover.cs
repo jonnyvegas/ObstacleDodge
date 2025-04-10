@@ -17,8 +17,8 @@ public class Mover : MonoBehaviour
     {
         deltaX = Input.GetAxis("Horizontal");
         deltaZ = Input.GetAxis("Vertical");
-        transform.Translate(transform.right * deltaX * horizMoveRate * Time.deltaTime);
-        transform.Translate(transform.forward * deltaZ * vertMoveRate * Time.deltaTime);
+        transform.Translate(transform.right * (deltaX * horizMoveRate * Time.deltaTime));
+        transform.Translate(transform.forward * (deltaZ * vertMoveRate * Time.deltaTime));
         //transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime);
     }
 
