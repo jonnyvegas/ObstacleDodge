@@ -18,5 +18,14 @@ public class ObsctacleCollision : MonoBehaviour
     {
         // see what hit us. We may need to do something to the player here.
         Debug.Log("something hit " + this.gameObject.name + ". it's: " + other.gameObject.name);
+        if (other.gameObject.TryGetComponent(out IScorekeeper theScorekeeper))
+        {
+            // hard coding for now - will update so each obstacle can have its' own score if desired.
+            theScorekeeper.AddScore(1);
+        }
+        else
+        {
+            Debug.Log("Failed to get theScorekeeper. Sadge.");
+        }
     }
 }
