@@ -36,7 +36,7 @@ public class DroppingObject : MonoBehaviour, IDroppingObject
 
     public void SetRendererEnabled(bool enabled)
     {
-        Debug.Log("Setting renderer enabled to : " + enabled);
+       // Debug.Log("Setting renderer enabled to : " + enabled);
         theRenderer.enabled = enabled;
     }
 
@@ -44,7 +44,7 @@ public class DroppingObject : MonoBehaviour, IDroppingObject
     {
         
         yield return new WaitForSeconds(3);
-        Debug.Log("Start dropping object");
+       // Debug.Log("Start dropping object");
         SetRendererEnabled(true);
         Drop();
     }

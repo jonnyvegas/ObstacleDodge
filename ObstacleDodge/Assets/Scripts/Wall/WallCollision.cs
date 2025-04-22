@@ -4,10 +4,11 @@ using UnityEngine;
 public class WallCollision : MonoBehaviour
 {
     [SerializeField] private Material NewWallMaterial;
+    private MaterialChangeOnCollision MaterialChangeRef;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SetMaterialChangeRef(gameObject.AddComponent<WallChangeMaterial>());
     }
 
     // Update is called once per frame
@@ -30,10 +31,11 @@ public class WallCollision : MonoBehaviour
             return;
         
         // change the material color.
-        MeshRenderer theRenderer = this.gameObject.GetComponent<MeshRenderer>();
-        if (NewWallMaterial != null)
-        {
-            theRenderer.material = NewWallMaterial;
-        }
+        MaterialChangeRef.ChangeMaterial(NewWallMaterial);
+    }
+
+    private void SetMaterialChangeRef(MaterialChangeOnCollision newMatChangeRef)
+    {
+        this.MaterialChangeRef = newMatChangeRef;
     }
 }

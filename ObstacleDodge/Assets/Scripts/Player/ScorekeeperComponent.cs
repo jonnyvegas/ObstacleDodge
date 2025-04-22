@@ -6,6 +6,7 @@ public interface IScorekeeper
 {
     void AddScore(int Score);
     void RemoveScore(int Score);
+    int GetScore();
 }
 
 public class ScorekeeperComponent : MonoBehaviour, IScorekeeper
@@ -33,6 +34,11 @@ public class ScorekeeperComponent : MonoBehaviour, IScorekeeper
     {
         this.Score -= Score;
         PrintScore();
+    }
+
+    public int GetScore()
+    {
+        return this.Score;
     }
 
     void PrintScore()

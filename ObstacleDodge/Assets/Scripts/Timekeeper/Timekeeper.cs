@@ -22,7 +22,7 @@ public class Timekeeper : MonoBehaviour
         if (timePassed >= countSeconds + 1)
         {
             countSeconds++;
-            Debug.Log(countSeconds);
+            //Debug.Log(countSeconds);
         }
     }
 
