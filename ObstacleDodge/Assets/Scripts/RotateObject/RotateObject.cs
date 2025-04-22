@@ -2,18 +2,22 @@ using UnityEngine;
 
 public interface IRotateObject
 {
-    void FlipRotation();
+    void FlipRotation(bool bX, bool bY, bool bZ);
     void TurnRotationOnOrOff(bool bOn);
 }
 
 public class RotateObject : MonoBehaviour
 {
-    [SerializeField] private float RotationRate = 10.0f;
+    [SerializeField] private float xRotationRate = 0.0f;
+    [SerializeField] private float yRotationRate = 0.0f;
+    [SerializeField] private float zRotationRate = 0.0f;
 
-    private bool bRotateClockwise = true;
+    //private bool bRotateClockwise = true;
+    private float xRotation = 0.0f;
     private float yRotation = 0.0f;
+    private float zRotation = 0.0f;
 
-    [SerializeField] private bool bShouldRotate = false;
+    [SerializeField] private bool shouldRotate = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,28 +27,42 @@ public class RotateObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bShouldRotate)
-        {
-            if (bRotateClockwise)
-            {
-                yRotation = RotationRate * Time.deltaTime;
-            }
-            else
-            {
-                yRotation = -RotationRate * Time.deltaTime;
-            }
+        RotateTheObject();
+    }
 
-            this.gameObject.transform.Rotate(0.0f, yRotation, 0.0f);
+    void RotateTheObject()
+    {
+        if (shouldRotate)
+        {
+            
+            xRotation = xRotationRate * Time.deltaTime;
+            yRotation = yRotationRate * Time.deltaTime;
+            zRotation = zRotationRate * Time.deltaTime;
+
+            this.gameObject.transform.Rotate(xRotation, yRotation, zRotation);
         }
     }
 
-    public void FlipRotation()
+    public void FlipRotation(bool bX, bool bY, bool bZ)
     {
-        bRotateClockwise = !bRotateClockwise;
+        if (bX)
+        {
+            xRotationRate *= -1;
+        }
+
+        if (bY)
+        {
+            yRotationRate *= -1;
+        }
+
+        if (bZ)
+        {
+            zRotationRate *= -1;
+        }
     }
 
     public void TurnRotationOnOrOff(bool bOn)
     {
-        bShouldRotate = bOn;
+        shouldRotate = bOn;
     }
 }
