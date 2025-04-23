@@ -20,7 +20,7 @@ public class FlyAtPlayer : MonoBehaviour
     {
         if (bStartMoving)
         {
-            transform.position = Vector3.MoveTowards(this.gameObject.transform.position, parsedPlayerPosition,speed * Time.deltaTime);
+            HandleMoveTowards();
         }
         
     }
@@ -30,5 +30,11 @@ public class FlyAtPlayer : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         parsedPlayerPosition = player.transform.position;
         bStartMoving = true;
+    }
+
+    void HandleMoveTowards()
+    {
+        transform.position = Vector3.MoveTowards(this.gameObject.transform.position, parsedPlayerPosition,speed * Time.deltaTime);
+
     }
 }
