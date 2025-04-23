@@ -28,6 +28,7 @@ public class TriggerForFlyingObstacles : MonoBehaviour
                 IFlyAtPlayer flyAtPlayerRef;
                 if (obstacle.TryGetComponent<IFlyAtPlayer>(out flyAtPlayerRef))
                 {
+                    obstacle.SetActive(true);
                     flyAtPlayerRef.StartMoving();
                 }
             }

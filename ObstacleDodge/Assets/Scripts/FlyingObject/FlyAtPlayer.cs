@@ -17,6 +17,7 @@ public class FlyAtPlayer : MonoBehaviour, IFlyAtPlayer
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.gameObject.SetActive(false);
         //StartCoroutine(ParsePlayerLocationCoroutine(3));
     }
 
@@ -56,7 +57,8 @@ public class FlyAtPlayer : MonoBehaviour, IFlyAtPlayer
 
     void GetRidOfObject(GameObject theObject)
     {
-        Destroy(theObject);
+        //Destroy(theObject);
+        theObject.SetActive(false);
     }
 
     void SetStartMoving(bool moving)
