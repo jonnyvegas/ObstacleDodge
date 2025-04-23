@@ -1,7 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class FlyAtPlayer : MonoBehaviour
+public interface IFlyAtPlayer
+{
+    void StartMoving();
+}
+
+public class FlyAtPlayer : MonoBehaviour, IFlyAtPlayer
 {
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 1.0f;
@@ -12,7 +17,7 @@ public class FlyAtPlayer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(ParsePlayerLocation());
+        //StartCoroutine(ParsePlayerLocationCoroutine(3));
     }
 
     // Update is called once per frame
@@ -25,9 +30,15 @@ public class FlyAtPlayer : MonoBehaviour
         
     }
 
-    IEnumerator ParsePlayerLocation()
+    IEnumerator ParsePlayerLocationCoroutine(float time)
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(time);
+        ParsePlayerLocation();
+        //yield return null;
+    }
+
+    void ParsePlayerLocation()
+    {
         parsedPlayerPosition = player.transform.position;
         bStartMoving = true;
     }
@@ -35,6 +46,26 @@ public class FlyAtPlayer : MonoBehaviour
     void HandleMoveTowards()
     {
         transform.position = Vector3.MoveTowards(this.gameObject.transform.position, parsedPlayerPosition,speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position,  parsedPlayerPosition) < 0.1f )
+        {
+            bStartMoving = false;
+            GetRidOfObject(this.gameObject);
+        }
 
+    }
+
+    void GetRidOfObject(GameObject theObject)
+    {
+        Destroy(theObject);
+    }
+
+    void SetStartMoving(bool moving)
+    {
+        bStartMoving = moving;
+    }
+
+    public void StartMoving()
+    {
+        SetStartMoving(true);
     }
 }
